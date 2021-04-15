@@ -1,0 +1,103 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
+    <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+    <form class="tag" method="GET" action="/">
+        <button class="alltags">Todos os Post it</button>
+    </form>
+</div>
+
+<main class="container">
+    <form class="form-card" method="POST" action="/">
+        {% csrf_token %}
+        <input
+        class="form-card-title"
+        id="tag"
+        type="text"
+        name="tag"
+        placeholder="Tag"
+        />
+        <input
+        class="form-card-title"
+        id="titulo"
+        type="text"
+        name="titulo"
+        placeholder="Título"
+        />
+        <textarea
+        class="autoresize"
+        name="detalhes"
+        id="detalhes"
+        type="text"
+        placeholder="Digite o conteúdo..."
+        ></textarea>
+        <button class="btn" type="submit">Criar</button>
+    </form>
+        <div class="card-container">
+        {% for note in notes %}
+            {% if note.id == update.id %}          
+            <div class="card"> 
+                <form class="updatenew" method="POST" action="/updatereturn/{{note.id}}/">
+                    {% csrf_token %}
+                    <input
+                    class="card-title2"
+                    id="tag"
+                    type="text"
+                    name="tag"
+                    placeholder={{note.tag}}
+                    />          
+                    <input
+                    class="card-title2"
+                    id="titulo"
+                    type="text"
+                    name="titulo"
+                    placeholder={{note.title}}
+                    />
+                    <textarea
+                    class="card-content2"
+                    name="detalhes"
+                    id="detalhes"
+                    type="text"
+                    placeholder={{note.content}}
+                    ></textarea>     
+                    <button class="updatebtn2" type="submit">Alterar Get-it</button>
+                </form>
+            </div>
+            {% else %}
+            <div class="card"> 
+                <form class="updateall" method="GET" action="/update/{{note.id}}">
+                    <button class="updatebtn"><i class="fa fa-bars"></i></button>
+                </form>
+                <a class="card-title" href="/{{note.tag}}">{{ note.tag }}</a>
+                <h3 class="card-title">{{ note.title }}</h3>
+                <div class="card-content">
+                    <p>{{ note.content }}</p>
+                </div>
+                <form class="delcont" method="GET" action="/delete/{{note.id}}">
+                    <button class="delbtn" type="submit"><i class="fa fa-trash"></i></button>
+                </form>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <div class="card-container">
+        {% for tag in tags %}
+            <div class="card"> 
+                <a class="card-title" href="/{{tag.name}}">{{ tag.name }}</a>
+                {% for note in notes %}
+                {% if note.tag == tag.name %}
+                <h3 class="card-title">{{ note.title}}</h3>
+                <div class="card-content">
+                    <p>{{ note.content }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}    
+            </div> 
+        {% endfor %}    
+        </div>     
+</main>
+<script type="text/javascript" src="{% static 'notes/script/getit.js' %}"></script>
+{% endblock %}
