@@ -1,0 +1,15 @@
+{% extends "memos/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<form method="post">
+  <label for="detalhes">Memoria</label>
+  <textarea class="texto_area" id="detalhes" name="detalhes"></textarea>
+  <input type="submit" />
+</form>
+
+<ul>
+  <li>Nenhuma anotação por enquanto.</li>
+</ul>
+{% endblock %}
