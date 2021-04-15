@@ -4,12 +4,13 @@
 {% block content %}
 
 <form method="post">
+{% csrf_token %}
   <label for="detalhes">Memoria</label>
   <textarea class="texto_area" id="detalhes" name="detalhes"></textarea>
-  <input type="submit" />
+  <input type="submit"/>
 </form>
 
 <ul>
-  <li>Nenhuma anotação por enquanto.</li>
+  <li>{{memo}}</li>
 </ul>
 {% endblock %}
