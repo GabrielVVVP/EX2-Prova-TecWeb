@@ -73,6 +73,16 @@ textarea {
   background-color: transparent;
 }
 
+.resp{
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  border: none;
+  display: flex;
+  background-color: transparent;
+}
+
 .autoresize{
   font-family: 'Roboto', sans-serif;
   border: 0px;
@@ -107,7 +117,7 @@ textarea {
   /* flex-wrap:wrap; */
   font-weight: bold;
   font-size: 1.2em;
-  margin: 5% 10% 15% 5%; 
+  margin: 5% 5% 15% 5%; 
 }
 .card-content{
   flex-wrap:wrap;

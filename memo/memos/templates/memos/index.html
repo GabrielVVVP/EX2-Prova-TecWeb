@@ -3,14 +3,18 @@
 
 {% block content %}
 
-<form method="post">
-{% csrf_token %}
-  <label for="detalhes">Memoria</label>
-  <textarea class="texto_area" id="detalhes" name="detalhes"></textarea>
-  <input type="submit"/>
-</form>
+<main class="container">
+    <form class="form-card" method="post" >
+        {% csrf_token %}
+        <label class="form-card-title" for="detalhes">Memória - Retornando a sua última mensagem</label>
+        <textarea class="autoresize" id="detalhes" name="detalhes" placeholder="Digite o memo..."></textarea>
+        <input class="btn" type="submit"/>
+    </form>
 
-<ul>
-  <li>{{memo}}</li>
-</ul>
+    <form class="form-card">
+    <ul>
+    <li class="card-title">{{memo}}</li>
+    </ul>
+    </form>
+</main>
 {% endblock %}
